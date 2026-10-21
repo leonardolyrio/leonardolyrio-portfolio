@@ -4,7 +4,7 @@ function Hero() {
   return (
     <section className="min-h-dvh flex items-center justify-center gap-20">
       <div className="flex flex-col gap-5">
-        <span className="text-lg font-semibold text-zinc-800">
+        <span className="text-lg font-medium text-zinc-800">
           Hey 👋, I'm Leonardo
         </span>
 

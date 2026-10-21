@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", Verdana, sans-serif;
+}

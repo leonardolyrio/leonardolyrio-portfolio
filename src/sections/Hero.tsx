@@ -1,5 +1,6 @@
 import profilePhoto from "../assets/photo.webp";
 import GradientASCII from "../components/GradientASCII";
+import { Mail, ArrowRight } from "lucide-react";
 
 function Hero() {
   return (
@@ -35,15 +36,17 @@ function Hero() {
         <div className="flex items-center gap-5">
           <a
             href="#"
-            className="px-4 py-3 bg-black rounded-xl text-white"
+            className="flex items-center gap-2 px-4 py-3 bg-black rounded-xl shadow-sm text-white"
           >
+            <Mail className="scale-80" />
             Contact
           </a>
           <a
             href="#"
-            className="px-4 py-2 bg-white border border-zinc-200 rounded-xl text-zinc-800"
+            className="group flex items-center gap-2 px-4 py-2 bg-white border border-zinc-200 rounded-xl shadow-sm text-zinc-800"
           >
             View My Work
+            <ArrowRight className="scale-80 group-hover:translate-x-1 transition-transform duration-200" />
           </a>
         </div>
       </div>

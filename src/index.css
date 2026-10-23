@@ -4,3 +4,26 @@
   box-sizing: border-box;
   font-family: "Poppins", "Segoe UI", Verdana, sans-serif;
 }
+
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", Verdana, sans-serif;
+}
+
+/*
+  A abordagem correta para acessibilidade moderna:
+  1. Removemos o outline padrão do :focus para evitar o efeito no clique do mouse.
+  2. Usamos :focus-visible para mostrar o outline APENAS quando a navegação for via teclado.
+*/
+*:focus {
+  outline: none !important;
+}
+
+*:focus-visible {
+  outline: 3px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+

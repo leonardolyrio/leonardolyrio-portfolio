@@ -9,7 +9,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-5 left-[50%] translate-x-[-50%] z-10 flex justify-center gap-1.5 p-1 bg-white/90 rounded-full shadow-sm text-[15px]">
+    <nav className="fixed top-5 left-[50%] translate-x-[-50%] z-10 flex justify-center gap-1.5 p-1.5 bg-white rounded-full shadow-sm text-[15px]">
       {links.map((link) => (
         <NavLink
           key={link.path}
@@ -27,7 +27,12 @@ function Navbar() {
                 <motion.div
                   layoutId="nav-pill"
                   className="absolute inset-0 bg-black/5 border border-zinc-200 rounded-full z-10"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  transition={{
+                    type: "spring",
+                    bounce: 0.2,
+                    duration: 0.6,
+                    layout: { duration: 0.3 },
+                  }}
                 />
               )}
             </>

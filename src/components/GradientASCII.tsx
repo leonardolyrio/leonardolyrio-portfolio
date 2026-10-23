@@ -1,10 +1,18 @@
-import { useEffect, useRef, type CSSProperties, type HTMLAttributes } from 'react';
+import {
+  useEffect,
+  useRef,
+  type CSSProperties,
+  type HTMLAttributes,
+} from "react";
 
-export type GradientASCIIShape = 'horizon' | 'pinch' | 'rise' | 'eclipse';
+export type GradientASCIIShape = "horizon" | "pinch" | "rise" | "eclipse";
 
-export type GradientASCIIClickEffect = 'wave' | 'burst' | 'none';
+export type GradientASCIIClickEffect = "wave" | "burst" | "none";
 
-export interface GradientASCIIProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
+export interface GradientASCIIProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "style"
+> {
   colors?: string[];
   shape?: GradientASCIIShape;
   characters?: string;
@@ -57,7 +65,10 @@ type Settings = {
   dpr?: number;
 };
 
-type Program = { program: WebGLProgram; uniforms: Record<string, WebGLUniformLocation | null> };
+type Program = {
+  program: WebGLProgram;
+  uniforms: Record<string, WebGLUniformLocation | null>;
+};
 
 type Target = {
   textures: (WebGLTexture | null)[];
@@ -81,10 +92,16 @@ const ATLAS_CELL_W = 60;
 const ATLAS_CELL_H = 100;
 const ATLAS_COLUMNS = 16;
 const FONT_SCALE = 0.78;
-const DEFAULT_COLORS = ['#1e3fd8', '#f6f8ff', '#a5d8ff', '#38bdf8'];
-const DEFAULT_CHARACTERS = ' =+xX0S8#@';
-const DEFAULT_FONT = '"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
-const SHAPES: Record<string, number> = { horizon: 0, pinch: 1, rise: 2, eclipse: 3 };
+const DEFAULT_COLORS = ["#1e3fd8", "#f6f8ff", "#a5d8ff", "#38bdf8"];
+const DEFAULT_CHARACTERS = " =+xX0S8#@";
+const DEFAULT_FONT =
+  '"Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+const SHAPES: Record<string, number> = {
+  horizon: 0,
+  pinch: 1,
+  rise: 2,
+  eclipse: 3,
+};
 const CLICK_EFFECTS: Record<string, number> = { none: 0, wave: 1, burst: 2 };
 
 const VERTEX = `#version 300 es
@@ -377,21 +394,29 @@ void main() {
   outColor = color;
 }`;
 
-const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, value));
 
-const toLinear = (value: number) => (value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+const toLinear = (value: number) =>
+  value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
 
 const toLab = ([r, g, b]: number[]): number[] => {
   const lr = toLinear(r);
   const lg = toLinear(g);
   const lb = toLinear(b);
-  const l = Math.cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
-  const m = Math.cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
-  const s = Math.cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
+  const l = Math.cbrt(
+    0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb,
+  );
+  const m = Math.cbrt(
+    0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb,
+  );
+  const s = Math.cbrt(
+    0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb,
+  );
   return [
     0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s,
     1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s,
-    0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
+    0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s,
   ];
 };
 
@@ -405,7 +430,10 @@ const compile = (gl: WebGL2RenderingContext, type: number, source: string) => {
   return null;
 };
 
-const link = (gl: WebGL2RenderingContext, fragmentSource: string): Program | null => {
+const link = (
+  gl: WebGL2RenderingContext,
+  fragmentSource: string,
+): Program | null => {
   const vertex = compile(gl, gl.VERTEX_SHADER, VERTEX);
   const fragment = compile(gl, gl.FRAGMENT_SHADER, fragmentSource);
   const program = gl.createProgram();
@@ -424,7 +452,7 @@ const link = (gl: WebGL2RenderingContext, fragmentSource: string): Program | nul
   for (let i = 0; i < count; i++) {
     const info = gl.getActiveUniform(program, i);
     if (!info) continue;
-    const name = info.name.replace(/\[0\]$/, '');
+    const name = info.name.replace(/\[0\]$/, "");
     uniforms[name] = gl.getUniformLocation(program, name);
   }
   return { program, uniforms };
@@ -443,38 +471,71 @@ const createTarget = (gl: WebGL2RenderingContext, count: number): Target => {
   return { textures, framebuffer: gl.createFramebuffer(), width: 0, height: 0 };
 };
 
-const sizeTarget = (gl: WebGL2RenderingContext, target: Target, width: number, height: number) => {
+const sizeTarget = (
+  gl: WebGL2RenderingContext,
+  target: Target,
+  width: number,
+  height: number,
+) => {
   if (target.width === width && target.height === height) return;
   target.width = width;
   target.height = height;
   gl.bindFramebuffer(gl.FRAMEBUFFER, target.framebuffer);
   target.textures.forEach((texture, i) => {
     gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + i, gl.TEXTURE_2D, texture, 0);
+    gl.texImage2D(
+      gl.TEXTURE_2D,
+      0,
+      gl.RGBA8,
+      width,
+      height,
+      0,
+      gl.RGBA,
+      gl.UNSIGNED_BYTE,
+      null,
+    );
+    gl.framebufferTexture2D(
+      gl.FRAMEBUFFER,
+      gl.COLOR_ATTACHMENT0 + i,
+      gl.TEXTURE_2D,
+      texture,
+      0,
+    );
   });
   gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 };
 
-const buildAtlas = (gl: WebGL2RenderingContext, characters: string, fontFamily: string): Atlas => {
-  const list = [...new Set([...characters].filter(char => char !== '\n' && char !== '\r'))];
-  if (!list.length) list.push(' ');
+const buildAtlas = (
+  gl: WebGL2RenderingContext,
+  characters: string,
+  fontFamily: string,
+): Atlas => {
+  const list = [
+    ...new Set(
+      [...characters].filter((char) => char !== "\n" && char !== "\r"),
+    ),
+  ];
+  if (!list.length) list.push(" ");
   const font = `300 ${Math.round(ATLAS_CELL_H * FONT_SCALE)}px ${fontFamily}`;
   const columns = Math.min(ATLAS_COLUMNS, list.length);
   const rows = Math.ceil(list.length / columns);
-  const canvas = document.createElement('canvas');
+  const canvas = document.createElement("canvas");
   canvas.width = ATLAS_CELL_W * columns;
   canvas.height = ATLAS_CELL_H * rows;
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext("2d");
   if (context) {
     context.font = font;
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillStyle = '#fff';
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillStyle = "#fff";
     list.forEach((char, index) => {
       const column = index % columns;
       const row = Math.floor(index / columns);
-      context.fillText(char, column * ATLAS_CELL_W + ATLAS_CELL_W / 2, row * ATLAS_CELL_H + ATLAS_CELL_H / 2 + 3);
+      context.fillText(
+        char,
+        column * ATLAS_CELL_W + ATLAS_CELL_W / 2,
+        row * ATLAS_CELL_H + ATLAS_CELL_H / 2 + 3,
+      );
     });
   }
   const texture = gl.createTexture();
@@ -482,7 +543,11 @@ const buildAtlas = (gl: WebGL2RenderingContext, characters: string, fontFamily: 
   gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
   gl.generateMipmap(gl.TEXTURE_2D);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+  gl.texParameteri(
+    gl.TEXTURE_2D,
+    gl.TEXTURE_MIN_FILTER,
+    gl.LINEAR_MIPMAP_LINEAR,
+  );
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
@@ -491,7 +556,7 @@ const buildAtlas = (gl: WebGL2RenderingContext, characters: string, fontFamily: 
 
 const GradientASCII = ({
   colors = DEFAULT_COLORS,
-  shape = 'horizon',
+  shape = "horizon",
   characters = DEFAULT_CHARACTERS,
   cellSize = 18,
   density = 0.8,
@@ -508,19 +573,21 @@ const GradientASCII = ({
   variation = 0,
   mouseInteraction = true,
   scrambleRadius = 0.1,
-  clickEffect = 'wave',
+  clickEffect = "wave",
   intro = true,
   lightMode = false,
   fontFamily = DEFAULT_FONT,
   dpr,
-  className = '',
+  className = "",
   style,
   ...rest
 }: GradientASCIIProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wakeRef = useRef<(() => void) | null>(null);
-  const palette = (Array.isArray(colors) && colors.length ? colors : DEFAULT_COLORS).slice(0, MAX_COLORS);
+  const palette = (
+    Array.isArray(colors) && colors.length ? colors : DEFAULT_COLORS
+  ).slice(0, MAX_COLORS);
   const settings: Settings = {
     colors: palette.length > 1 ? palette : [palette[0], palette[0]],
     shape: SHAPES[shape] ?? 0,
@@ -544,19 +611,19 @@ const GradientASCII = ({
     intro,
     lightMode,
     fontFamily: fontFamily || DEFAULT_FONT,
-    dpr
+    dpr,
   };
   const settingsRef = useRef(settings);
 
   useEffect(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
-    const gl = canvas?.getContext('webgl2', {
+    const gl = canvas?.getContext("webgl2", {
       alpha: true,
       premultipliedAlpha: true,
       antialias: false,
       depth: false,
-      stencil: false
+      stencil: false,
     });
     if (!container || !canvas || !gl) return undefined;
 
@@ -570,7 +637,9 @@ const GradientASCII = ({
     const haloA = createTarget(gl, 1);
     const haloB = createTarget(gl, 1);
 
-    const probe = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+    const probe = document
+      .createElement("canvas")
+      .getContext("2d", { willReadFrequently: true });
     const colorCache = new Map<string, number[]>();
     const parse = (value: string): number[] => {
       const key = String(value);
@@ -579,7 +648,7 @@ const GradientASCII = ({
       let rgb: number[] = [0, 0, 0];
       if (probe) {
         probe.clearRect(0, 0, 1, 1);
-        probe.fillStyle = '#000000';
+        probe.fillStyle = "#000000";
         probe.fillStyle = key;
         probe.fillRect(0, 0, 1, 1);
         const [r, g, b] = probe.getImageData(0, 0, 1, 1).data;
@@ -589,7 +658,8 @@ const GradientASCII = ({
       return rgb;
     };
 
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const reduce =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
     const view = { width: 1, height: 1, ratio: 1 };
     const ramp = new Float32Array(MAX_COLORS * 3);
     const clickData = new Float32Array(MAX_CLICKS * 4);
@@ -598,8 +668,8 @@ const GradientASCII = ({
     const trail: Point[] = [];
     const pointer = { x: 0, y: 0, inside: false };
     let atlas: Atlas | null = null;
-    let atlasKey = '';
-    let paletteKey = '';
+    let atlasKey = "";
+    let paletteKey = "";
     let time = 0;
     let glyphTime = 0;
     let introClock = settingsRef.current.intro && !reduce ? 0 : 1;
@@ -624,13 +694,13 @@ const GradientASCII = ({
           atlas = buildAtlas(gl, s.characters, s.fontFamily);
           draw();
         },
-        () => {}
+        () => {},
       );
     };
 
     const syncPalette = () => {
       const s = settingsRef.current;
-      const key = s.colors.join(',');
+      const key = s.colors.join(",");
       if (key === paletteKey) return;
       paletteKey = key;
       s.colors.forEach((color, i) => ramp.set(toLab(parse(color)), i * 3));
@@ -656,7 +726,7 @@ const GradientASCII = ({
       gl.uniform2f(
         u.uOffset,
         (width - Math.ceil(width / cellW) * cellW) / 2,
-        (height - Math.ceil(height / cellH) * cellH) / 2
+        (height - Math.ceil(height / cellH) * cellH) / 2,
       );
       gl.uniform2f(u.uAtlasGrid, atlas.grid[0], atlas.grid[1]);
       gl.uniform1f(u.uCount, atlas.count);
@@ -748,7 +818,7 @@ const GradientASCII = ({
         gl,
         fieldTarget,
         Math.max(1, Math.round(canvas.width / 2)),
-        Math.max(1, Math.round(canvas.height / 2))
+        Math.max(1, Math.round(canvas.height / 2)),
       );
       const haloWidth = Math.max(1, Math.round(canvas.width / 4));
       const haloHeight = Math.max(1, Math.round(canvas.height / 4));
@@ -759,10 +829,11 @@ const GradientASCII = ({
     };
 
     const updateInput = (dt: number) => {
-      trail.forEach(point => {
+      trail.forEach((point) => {
         point.age += dt;
       });
-      while (trail.length && trail[trail.length - 1].age > TRAIL_LIFE) trail.pop();
+      while (trail.length && trail[trail.length - 1].age > TRAIL_LIFE)
+        trail.pop();
       for (let i = 0; i < MAX_TRAIL; i++) {
         const point = trail[i];
         if (!point) {
@@ -772,10 +843,11 @@ const GradientASCII = ({
         const k = 1 - point.age / TRAIL_LIFE;
         trailData.set([point.x, point.y, k * k, 0], i * 4);
       }
-      clicks.forEach(click => {
+      clicks.forEach((click) => {
         click.age += dt;
       });
-      while (clicks.length && clicks[clicks.length - 1].age > CLICK_LIFE) clicks.pop();
+      while (clicks.length && clicks[clicks.length - 1].age > CLICK_LIFE)
+        clicks.pop();
       for (let i = 0; i < MAX_CLICKS; i++) {
         const click = clicks[i];
         if (!click) {
@@ -798,7 +870,8 @@ const GradientASCII = ({
         time += dt * s.speed * 0.5;
         glyphTime += dt * Math.max(s.speed, 0.15);
       }
-      if (introClock < 1) introClock = Math.min(1, introClock + dt / INTRO_SECONDS);
+      if (introClock < 1)
+        introClock = Math.min(1, introClock + dt / INTRO_SECONDS);
       grainClock += dt;
       if (!reduce && grainClock > 1 / 24) {
         grainClock = 0;
@@ -806,13 +879,15 @@ const GradientASCII = ({
       }
       updateInput(dt);
       draw();
-      const busy = !reduce || introClock < 1 || clicks.length > 0 || trail.length > 0;
+      const busy =
+        !reduce || introClock < 1 || clicks.length > 0 || trail.length > 0;
       if (busy) raf = requestAnimationFrame(frame);
       else last = 0;
     };
 
     function wake() {
-      if (!raf && !disposed && visible && !document.hidden) raf = requestAnimationFrame(frame);
+      if (!raf && !disposed && visible && !document.hidden)
+        raf = requestAnimationFrame(frame);
     }
 
     const locate = (event: PointerEvent) => {
@@ -830,13 +905,19 @@ const GradientASCII = ({
       const s = settingsRef.current;
       if (!pointer.inside || !s.mouseInteraction || reduce) return;
       const head = trail[0];
-      const gap = head ? Math.hypot(pointer.x - head.x, pointer.y - head.y) : Infinity;
+      const gap = head
+        ? Math.hypot(pointer.x - head.x, pointer.y - head.y)
+        : Infinity;
       if (gap < TRAIL_STEP) return;
       if (head && head.age < 0.1) {
         const steps = Math.min(6, Math.floor(gap / (TRAIL_STEP * 2)));
         for (let i = 1; i <= steps; i++) {
           const k = i / (steps + 1);
-          trail.unshift({ x: head.x + (pointer.x - head.x) * k, y: head.y + (pointer.y - head.y) * k, age: 0 });
+          trail.unshift({
+            x: head.x + (pointer.x - head.x) * k,
+            y: head.y + (pointer.y - head.y) * k,
+            age: 0,
+          });
         }
       }
       trail.unshift({ x: pointer.x, y: pointer.y, age: 0 });
@@ -860,17 +941,17 @@ const GradientASCII = ({
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
-    const intersection = new IntersectionObserver(entries => {
-      visible = entries.some(entry => entry.isIntersecting);
+    const intersection = new IntersectionObserver((entries) => {
+      visible = entries.some((entry) => entry.isIntersecting);
       if (visible) {
         last = 0;
         wake();
       }
     });
     intersection.observe(container);
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-    window.addEventListener('pointerdown', onPointerDown, { passive: true });
-    document.addEventListener('visibilitychange', onVisibility);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerdown", onPointerDown, { passive: true });
+    document.addEventListener("visibilitychange", onVisibility);
     resize();
     wakeRef.current = wake;
 
@@ -880,16 +961,18 @@ const GradientASCII = ({
       wakeRef.current = null;
       resizeObserver.disconnect();
       intersection.disconnect();
-      window.removeEventListener('pointermove', onPointerMove);
-      window.removeEventListener('pointerdown', onPointerDown);
-      document.removeEventListener('visibilitychange', onVisibility);
-      [fieldTarget, haloA, haloB].forEach(target => {
-        target.textures.forEach(texture => gl.deleteTexture(texture));
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("visibilitychange", onVisibility);
+      [fieldTarget, haloA, haloB].forEach((target) => {
+        target.textures.forEach((texture) => gl.deleteTexture(texture));
         gl.deleteFramebuffer(target.framebuffer);
       });
       if (atlas) gl.deleteTexture(atlas.texture);
       gl.deleteVertexArray(vao);
-      [field, halo, blur, composite].forEach(item => gl.deleteProgram(item.program));
+      [field, halo, blur, composite].forEach((item) =>
+        gl.deleteProgram(item.program),
+      );
       // Não chamar loseContext() aqui: no <StrictMode> (dev) o efeito roda duas vezes
       // no mesmo canvas, e getContext() devolveria o contexto já perdido (fundo em branco).
     };
@@ -903,11 +986,17 @@ const GradientASCII = ({
   return (
     <div
       ref={containerRef}
-      className={['relative h-full w-full overflow-hidden', className].filter(Boolean).join(' ')}
+      className={["relative h-full w-full overflow-hidden", className]
+        .filter(Boolean)
+        .join(" ")}
       style={style}
       {...rest}
     >
-      <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" aria-hidden="true" />
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 block h-full w-full"
+        aria-hidden="true"
+      />
     </div>
   );
 };

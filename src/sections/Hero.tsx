@@ -7,9 +7,32 @@ function Hero() {
   const [isHovered, setIsHovered] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText("leonardolyrio123@gmail.com");
-    setIsCopied(true);
+  const handleCopy = async () => {
+    const textToCopy = "leonardolyrio123@gmail.com";
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(textToCopy);
+      } else {
+        // Fallback para navegadores antigos ou contextos não seguros (HTTP)
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+
+        // Garante que o textarea não cause scroll ou seja visível
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      setIsCopied(true);
+    } catch (err) {
+      console.error("Erro ao copiar texto: ", err);
+    }
 
     setTimeout(() => {
       setIsCopied(false);

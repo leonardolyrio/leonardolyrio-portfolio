@@ -67,7 +67,7 @@ function Projects() {
       {/* Botão de Ver Todos */}
       <Link to="/projects">
         <button className="group flex items-center gap-2 px-5 py-2.5 bg-white border border-zinc-200 rounded-full text-sm font-medium text-zinc-800 shadow-sm hover:bg-zinc-50 transition-colors cursor-pointer mt-4">
-          View all projects
+          Ver todos os projetos
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
         </button>
       </Link>

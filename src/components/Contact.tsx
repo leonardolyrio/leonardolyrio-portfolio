@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import GradientASCII from "./GradientASCII";
 import { Mail, Copy, Check, ArrowRight } from "lucide-react";
 import { LinkedIn } from "./icons/LinkedIn";
@@ -8,9 +9,32 @@ function Contact() {
   const [isHovered, setIsHovered] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText("leonardolyrio123@gmail.com");
-    setIsCopied(true);
+  const handleCopy = async () => {
+    const textToCopy = "leonardolyrio123@gmail.com";
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(textToCopy);
+      } else {
+        // Fallback para navegadores antigos ou contextos não seguros (HTTP)
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+
+        // Garante que o textarea não cause scroll ou seja visível
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      setIsCopied(true);
+    } catch (err) {
+      console.error("Erro ao copiar texto: ", err);
+    }
 
     setTimeout(() => {
       setIsCopied(false);
@@ -83,11 +107,11 @@ function Contact() {
 
               {/* Textos com blur e larguras controladas para o botão expandir */}
               <div className="relative flex items-center overflow-hidden">
-                {/* Texto 'Contact' - Define a largura inicial e some com blur */}
+                {/* Texto 'Contato' - Define a largura inicial e some com blur */}
                 <span
                   className={`transition-all duration-500 whitespace-nowrap ${isHovered ? "max-w-0 opacity-0 blur-md -translate-y-1 overflow-hidden" : "max-w-25 opacity-100 blur-0 translate-y-0"}`}
                 >
-                  Contact
+                  Contato
                 </span>
 
                 {/* Texto Email - Expande a largura e aparece com blur */}
@@ -98,13 +122,13 @@ function Contact() {
                 </span>
               </div>
             </button>
-            <a
-              href="#"
+            <Link
+              to="/projects"
               className="group flex items-center gap-2 px-5 py-3 bg-white/90 backdrop-blur-sm border border-zinc-200 rounded-xl shadow-sm text-zinc-800 hover:bg-white transition-colors"
             >
-              See projects
+              Veja os projetos
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </a>
+            </Link>
           </div>
         </div>
 

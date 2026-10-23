@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import profilePhoto from "../assets/photo.webp";
 import GradientASCII from "../components/GradientASCII";
 import { Mail, Copy, Check, ArrowRight } from "lucide-react";
@@ -122,13 +123,13 @@ function Hero() {
               </span>
             </div>
           </button>
-          <a
-            href="#"
+          <Link
+            to="/projects"
             className="group flex items-center gap-2 px-4 py-3 bg-white border border-zinc-200 rounded-xl shadow-sm text-zinc-800 font-medium"
           >
             Veja meu trabalho
             <ArrowRight className="scale-70 group-hover:translate-x-1 transition-transform duration-200" />
-          </a>
+          </Link>
         </div>
       </div>
 

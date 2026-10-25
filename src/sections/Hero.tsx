@@ -41,7 +41,7 @@ function Hero() {
   };
 
   return (
-    <section className="relative isolate overflow-hidden min-h-dvh flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 lg:gap-16 m-2 rounded-t-4xl px-6 md:px-10 lg:px-16 box-border pt-28 lg:pt-0">
+    <section className="relative isolate overflow-hidden min-h-dvh flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 lg:gap-16 sm:m-2 sm:rounded-t-4xl px-6 md:px-10 lg:px-16 box-border pt-28 lg:pt-0">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <GradientASCII
           lightMode
@@ -125,7 +125,7 @@ function Hero() {
           </button>
           <Link
             to="/projects"
-            className="group flex items-center gap-2 px-4 py-3 bg-white border border-zinc-200 rounded-xl shadow-sm text-zinc-800 font-medium"
+            className="group flex items-center gap-1 px-4 py-3 bg-white border border-zinc-200 rounded-xl shadow-sm text-sm text-zinc-800 font-medium"
           >
             Veja meu trabalho
             <ArrowRight className="scale-70 group-hover:translate-x-1 transition-transform duration-200" />
@@ -135,7 +135,7 @@ function Hero() {
 
       <img
         src={profilePhoto}
-        alt=""
+        alt="Foto de perfil de Leonardo, Desenvolvedor Frontend"
         className="w-full max-w-full sm:max-w-md md:max-w-[clamp(20rem,35vw,28rem)] rounded-3xl border-4 md:border-5 border-white shadow-sm h-auto object-cover shrink-0"
       />
     </section>

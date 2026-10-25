@@ -1,11 +1,21 @@
+import AboutContent from "../sections/AboutContent";
+import Contact from "../components/Contact";
+import PageHero from "../sections/PageHero";
+import { Reveal } from "../components/Reveal";
+
 function About() {
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen text-center p-4">
-      <h1 className="text-[clamp(2rem,8vw,4rem)] font-bold mb-4">About</h1>
-      <p className="text-[clamp(1rem,4vw,1.5rem)] opacity-80">
-        Em desenvolvimento...
-      </p>
-    </section>
+    <main className="min-h-screen bg-white sm:m-2 sm:rounded-t-4xl overflow-hidden">
+      <Reveal>
+        <PageHero title="Sobre Mim" />
+      </Reveal>
+      <Reveal delay={0.2}>
+        <AboutContent />
+      </Reveal>
+      <Reveal delay={0.4}>
+        <Contact />
+      </Reveal>
+    </main>
   );
 }
 

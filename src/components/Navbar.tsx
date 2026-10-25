@@ -15,7 +15,7 @@ function Navbar() {
           key={link.path}
           to={link.path}
           className={({ isActive }) =>
-            `relative px-3 py-1 rounded-full transition-colors duration-300 z-10 ${
+            `relative px-3 py-1 rounded-full z-10 ${
               isActive ? "text-black" : "text-zinc-500 hover:text-zinc-800"
             }`
           }
@@ -26,12 +26,11 @@ function Navbar() {
               {isActive && (
                 <motion.div
                   layoutId="nav-pill"
-                  className="absolute inset-0 bg-black/5 border border-zinc-200 rounded-full z-10"
+                  className="absolute inset-0 bg-black/5 border border-zinc-200 rounded-full z-10 will-change-transform"
                   transition={{
                     type: "spring",
-                    bounce: 0.2,
-                    duration: 0.6,
-                    layout: { duration: 0.3 },
+                    stiffness: 400,
+                    damping: 30,
                   }}
                 />
               )}

@@ -2,14 +2,11 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Poppins", "Segoe UI", Verdana, sans-serif;
+  font-family: "Inter", "Segoe UI", Verdana, sans-serif;
 }
 
-@import "tailwindcss";
-
-* {
-  box-sizing: border-box;
-  font-family: "Poppins", "Segoe UI", Verdana, sans-serif;
+h1, h2, h3, h4, h5, h6, .font-title {
+  font-family: "Poppins", "Inter", "Segoe UI", Verdana, sans-serif;
 }
 
 /*
@@ -26,4 +23,22 @@
   outline-offset: 2px !important;
 }
 
+html.lenis, html.lenis body {
+  height: auto;
+}
 
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import project1Photo from "../assets/barbearia-casa-do-corte-banner.webp";
 import { ArrowRight, Scissors } from "lucide-react";
 
-function Projects() {
+function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boolean }) {
   return (
     <section className="flex flex-col items-center gap-12 md:gap-16 px-6 py-16 md:py-24 w-full">
       {/* Cabeçalho da Seção */}
@@ -37,16 +37,15 @@ function Projects() {
           <div className="w-full h-64 md:h-70 overflow-hidden rounded-[1.25rem] mb-6">
             <img
               src={project1Photo}
-              alt="Barbearia Casa do Corte"
+              alt="Banner do projeto Barbearia Casa do Corte"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
 
           {/* Textos do Card (Sem padding lateral extra para alinhar perfeitamente com a imagem) */}
           <div className="flex flex-col">
-            <h3 className="text-xl md:text-[22px] font-medium mb-2 text-zinc-900 leading-snug tracking-tight">
-              Uma presença digital elegante e funcional para uma barbearia
-              moderna, focada em transformar visitantes em clientes.
+            <h3 className="text-xl md:text-[22px] mb-2 text-zinc-900 leading-snug tracking-tight">
+              Presença digital elegante e funcional para barbearia moderna
             </h3>
 
             <p className="text-[15px] text-zinc-500 mb-6 leading-relaxed">
@@ -65,14 +64,16 @@ function Projects() {
       </div>
 
       {/* Botão de Ver Todos */}
-      <Link to="/projects">
-        <button className="group flex items-center gap-2 px-5 py-2.5 bg-white border border-zinc-200 rounded-full text-sm font-medium text-zinc-800 shadow-sm hover:bg-zinc-50 transition-colors cursor-pointer mt-4">
-          Ver todos os projetos
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-        </button>
-      </Link>
+      {showViewAllButton && (
+        <Link to="/projects">
+          <button className="group flex items-center gap-2 px-5 py-2.5 bg-white border border-zinc-200 rounded-xl text-sm font-medium text-zinc-800 shadow-sm hover:bg-zinc-50 transition-colors cursor-pointer mt-4">
+            Ver todos os projetos
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+          </button>
+        </Link>
+      )}
     </section>
   );
 }
 
-export default Projects;
+export default ProjectsGrid;

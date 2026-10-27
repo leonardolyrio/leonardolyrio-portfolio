@@ -51,11 +51,11 @@ function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boole
           </div>
 
           {/* Banner */}
-          <div className="w-full h-64 md:h-70 overflow-hidden rounded-[1.25rem] mb-6">
+          <div className="w-full h-64 md:h-70 overflow-hidden rounded-[1.25rem] mb-4">
             <img
               src={project1Photo}
               alt="Banner do projeto Barbearia Casa do Corte"
-              className="w-full h-//object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
 

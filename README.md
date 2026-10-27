@@ -2,13 +2,13 @@
 
 ![Preview do Projeto](./public/preview.webp)
 
-## 🌐 [Visite o Site](https://leonardolyrio.vercel.app)
+## [Visite o Site](https://leonardolyrio.vercel.app)
 
-Este é o meu portfólio profissional, desenvolvido para apresentar meus projetos e habilidades em desenvolvimento frontend. O objetivo principal foi criar uma interface moderna, responsiva e com foco em performance.
+Meu portfólio profissional para apresentar meus projetos e habilidades em frontend. O foco aqui foi criar uma interface moderna, responsiva e com carregamento rápido.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend**: React + Vite
 - **Estilização**: Tailwind CSS
@@ -18,18 +18,18 @@ Este é o meu portfólio profissional, desenvolvido para apresentar meus projeto
 
 ---
 
-## 📝 Implementações Técnicas
+## Implementações Técnicas
 
-O projeto utiliza algumas práticas de desenvolvimento para melhorar a entrega final:
+Algumas práticas utilizadas para melhorar a entrega do projeto:
 
-- **Otimização de Carregamento**: Uso de `React.lazy` e `Suspense` para carregar as páginas apenas quando necessário.
-- **SEO Básico**: Configuração de meta-tags e Open Graph para melhor indexação e compartilhamento.
-- **UX & Interação**: Implementação de scroll suave com Lenis e animações de entrada com Framer Motion.
-- **Tipagem**: Uso de TypeScript para garantir a consistência dos dados no código.
+- **Carregamento**: Uso de `React.lazy` e `Suspense` para carregar as páginas apenas quando necessário.
+- **SEO**: Configuração de meta-tags e Open Graph para facilitar a indexação e o compartilhamento.
+- **UX**: Scroll suave com Lenis e animações de entrada com Framer Motion.
+- **Tipagem**: TypeScript para manter a consistência dos dados.
 
 ---
 
-## 💻 Como rodar o projeto localmente
+## Como rodar o projeto localmente
 
 ### Pré-requisitos
 - Node.js instalado

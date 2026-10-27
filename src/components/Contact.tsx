@@ -43,7 +43,7 @@ function Contact() {
 
   return (
     <section className="flex flex-col items-center justify-center px-4 py-16 md:py-24 w-full">
-      <div className="w-full max-w-5xl relative isolate overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16 px-6 py-12 md:p-14 border border-zinc-200/80 rounded-[2.5rem] shadow-sm">
+      <div className="w-full max-w-5xl relative isolate overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16 px-6 py-12 md:p-10 border border-zinc-200/80 rounded-[2.5rem] shadow-sm">
         {/* Background Animation */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           <GradientASCII
@@ -62,20 +62,20 @@ function Contact() {
         <div className="flex flex-col gap-8 w-full md:w-1/2 text-left">
           <div className="flex flex-col gap-4">
             <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold tracking-tight text-zinc-900 leading-tight">
-              Let's connect
+              Vamos nos conectar
             </h2>
             <p className="max-w-105 text-[clamp(1rem,1.5vw,1.125rem)] leading-relaxed text-zinc-700">
-              I’m always open to discussing new projects, creative ideas, or
-              opportunities to be part of your visions. Just reach out!
+              Estou sempre aberto a discutir novos projetos, ideias criativas ou
+              oportunidades de fazer parte da sua visão. Entre em contato!
             </p>
           </div>
 
-          <div className="flex flex-row flex-wrap items-center justify-start gap-4 text-[14.5px] font-medium text-white mt-2">
+          <div className="relative flex items-center justify-start text-[14.5px] font-medium text-white mt-2 mb-12">
             <button
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onClick={handleCopy}
-              className="flex items-center gap-1 px-5 py-3 bg-zinc-950 rounded-xl shadow-sm cursor-pointer transition-all duration-300 hover:bg-zinc-800"
+              className="flex items-center gap-1 px-5 py-3 bg-zinc-950 rounded-xl shadow-sm cursor-pointer transition-all duration-300 hover:bg-zinc-800 shrink-0 z-10"
             >
               {/* Ícones empilhados com blur e transição suave */}
               <div className="relative w-5 h-5 flex items-center justify-center">
@@ -124,7 +124,11 @@ function Contact() {
             </button>
             <Link
               to="/projects"
-              className="group flex items-center gap-2 px-5 py-3 bg-white/90 backdrop-blur-sm border border-zinc-200 rounded-xl shadow-sm text-zinc-800 hover:bg-white transition-colors"
+              className={`group absolute top-0 left-0 flex items-center gap-2 px-5 py-3 bg-white/90 backdrop-blur-sm border border-zinc-200 rounded-xl shadow-sm text-zinc-800 hover:bg-white transition-all duration-500 shrink-0 whitespace-nowrap ${
+                isHovered
+                  ? "translate-x-0 translate-y-[60px] opacity-100"
+                  : "translate-x-[145px] translate-y-0 opacity-100"
+              }`}
             >
               Veja os projetos
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
@@ -133,8 +137,8 @@ function Contact() {
         </div>
 
         {/* Card Branco de Redes Sociais */}
-        <div className="flex justify-center w-full md:w-1/2">
-          <div className="w-full max-w-sm flex flex-col items-center justify-center gap-8 bg-white p-10 rounded-4xl border border-zinc-200 shadow-sm">
+        <div className="flex justify-center md:justify-end w-full md:w-1/2">
+          <div className="w-80 max-w-sm h-70 flex flex-col items-center justify-center gap-8 bg-white p-10 rounded-4xl border border-zinc-200 shadow-sm">
             <ul className="flex items-center gap-4">
               <li>
                 <a

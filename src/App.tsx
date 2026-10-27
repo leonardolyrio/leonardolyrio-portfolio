@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Lenis from "lenis";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   useEffect(() => {
@@ -15,6 +16,9 @@ function App() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
     });
+
+    // Tornando o lenis disponível globalmente para o ScrollToTop conseguir acessá-lo
+    (window as any).lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -30,6 +34,7 @@ function App() {
 
   return (
     <div className="lenis">
+      <ScrollToTop />
       <Navbar />
 
       <Routes>

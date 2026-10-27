@@ -65,7 +65,7 @@ function Hero() {
             <span className="md:whitespace-nowrap">Frontend developer</span>{" "}
             <br className="hidden md:block" /> & Entusiasta de IA
           </h1>
-          <p className="max-w-full text-[clamp(1.125rem,2vw,1.25rem)] leading-relaxed text-zinc-600">
+          <p className="max-w-full text-[clamp(1.125rem,2vw,1.25rem)] leading-relaxed text-zinc-700">
             Desenvolvedor independente focado em interfaces que transmitem
             calma, são bem pensadas e discretamente rápidas.
           </p>
@@ -76,7 +76,7 @@ function Hero() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleCopy}
-            className="flex items-center gap-1 px-4 py-3 bg-black rounded-xl shadow-sm cursor-pointer transition-all duration-300 hover:bg-zinc-800"
+            className="flex items-center gap-1 px-4 py-3 bg-black border border-transparent rounded-xl shadow-sm cursor-pointer transition-all duration-300 hover:bg-zinc-800"
           >
             {/* Ícones empilhados com blur e transição suave */}
             <div className="relative w-5 h-5 flex items-center justify-center">
@@ -125,7 +125,7 @@ function Hero() {
           </button>
           <Link
             to="/projects"
-            className="group flex items-center gap-1 px-4 py-3 bg-white border border-zinc-200 rounded-xl shadow-sm text-sm text-zinc-800 font-medium"
+            className="group flex items-center gap-1 px-4 py-3 bg-white border border-zinc-200 rounded-xl shadow-sm text-[14px] sm:text-[15px] text-zinc-800 font-medium"
           >
             Veja meu trabalho
             <ArrowRight className="scale-70 group-hover:translate-x-1 transition-transform duration-200" />

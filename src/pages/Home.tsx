@@ -6,6 +6,12 @@ import { Reveal } from "../components/Reveal";
 function Home() {
   return (
     <main>
+      <title>Leonardo Lyrio | Desenvolvedor Frontend</title>
+      <meta name="description" content="Portfólio de Leonardo Lyrio, desenvolvedor frontend especializado em criar experiências digitais modernas e fluidas." />
+      <meta property="og:title" content="Leonardo Lyrio | Desenvolvedor Frontend" />
+      <meta property="og:description" content="Explore meus projetos e habilidades em desenvolvimento frontend." />
+      <meta property="og:type" content="website" />
+
       <Reveal>
         <Hero />
       </Reveal>

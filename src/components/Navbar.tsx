@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 function Navbar() {
   const links = [
     { name: "Home", path: "/" },
-    { name: "Projects", path: "/projects" },
-    { name: "About", path: "/about" },
+    { name: "Projetos", path: "/projects" },
+    { name: "Sobre", path: "/about" },
   ];
 
   return (
-    <nav className="fixed top-5 left-[50%] translate-x-[-50%] z-10 flex justify-center gap-1.5 p-1.5 bg-white rounded-full shadow-sm text-[15px]">
+    <nav className="fixed top-5 left-[50%] translate-x-[-50%] z-10 flex justify-center gap-1.5 p-1.5 bg-white rounded-full shadow-sm text-[14px]">
       {links.map((link) => (
         <NavLink
           key={link.path}

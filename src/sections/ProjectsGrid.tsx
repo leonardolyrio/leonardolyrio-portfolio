@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import project1Photo from "../assets/barbearia-casa-do-corte-banner.webp";
-import { ArrowRight, Scissors } from "lucide-react";
+import { ArrowRight, Scissors, ExternalLink, Github } from "lucide-react";
 
 function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boolean }) {
   return (
@@ -19,12 +19,29 @@ function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boole
       {/* Grid de Projetos - Limitado a max-w-5xl para alinhamento perfeito no desktop */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-5xl">
         {/* Card 1 */}
-        <a
-          href="https://barbearia-casa-do-corte.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group w-full flex flex-col p-4 md:p-5 bg-white border border-zinc-200/70 rounded-4xl hover:scale-[1.02] transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
-        >
+        <div className="group relative w-full flex flex-col p-4 md:p-5 bg-white border border-zinc-200/70 rounded-4xl hover:scale-[1.02] transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md">
+          {/* Links de Ação (Aparecem no Hover) */}
+          <div className="absolute bottom-6 right-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
+            <a
+              href="https://github.com/leonardolyrio/casa-do-corte"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-white border border-zinc-200 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-colors shadow-sm"
+              title="Ver repositório no GitHub"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+            <a
+              href="https://barbearia-casa-do-corte.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-zinc-950 text-white rounded-full hover:bg-zinc-800 transition-colors shadow-sm"
+              title="Visitar site"
+            >
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+
           {/* Header do Card (Ícone + Nome) */}
           <div className="flex items-center gap-3 mb-4 text-[14px] font-medium text-zinc-900">
             <div className="w-8 h-8 border border-zinc-200/80 rounded-[10px] flex items-center justify-center bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
@@ -38,7 +55,7 @@ function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boole
             <img
               src={project1Photo}
               alt="Banner do projeto Barbearia Casa do Corte"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-//object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
 
@@ -58,7 +75,7 @@ function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boole
               Desenvolvimento Web & Design, 2026
             </span>
           </div>
-        </a>
+        </div>
 
         {/* Futuros cards entrarão aqui automaticamente na 2ª coluna */}
       </div>

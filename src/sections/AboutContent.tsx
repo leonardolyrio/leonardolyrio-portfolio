@@ -26,10 +26,7 @@ function AboutContent() {
           </h2>
           <div className="space-y-4 text-[clamp(1rem,1.5vw,1.125rem)] leading-relaxed text-zinc-600">
             <p>
-              Olá! Sou o Leonardo Lyrio, desenvolvedor frontend apaixonado por criar interfaces que unem estética e funcionalidade,
-              especializando-me em React e Tailwind CSS para construir aplicações
-              modernas, fluidas e com alta performance. Sou também um entusiasta de IA,
-              sempre explorando como as novas tecnologias podem potencializar a experiência do usuário.
+              Olá, me chamo Leonardo Lyrio. Sou um desenvolvedor frontend em constante evolução, focando meus estudos em JavaScript e React para criar interfaces modernas e fluidas. Meu objetivo agora é consolidar minha base no front para, em breve, avançar para o backend com Node.js e Cloud, me tornando um desenvolvedor Fullstack.
             </p>
           </div>
         </div>

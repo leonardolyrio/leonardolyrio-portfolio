@@ -10,22 +10,21 @@ function Contact() {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = async () => {
-    const textToCopy = "leonardolyrio123@gmail.com";
+    const email = "leonardolyrio.contato@gmail.com";
+
+    // Abre o cliente de e-mail padrão do usuário
+    window.location.href = `mailto:${email}`;
 
     try {
       if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(textToCopy);
+        await navigator.clipboard.writeText(email);
       } else {
-        // Fallback para navegadores antigos ou contextos não seguros (HTTP)
         const textArea = document.createElement("textarea");
-        textArea.value = textToCopy;
-
-        // Garante que o textarea não cause scroll ou seja visível
+        textArea.value = email;
         textArea.style.position = "fixed";
         textArea.style.left = "-9999px";
         textArea.style.top = "0";
         document.body.appendChild(textArea);
-
         textArea.focus();
         textArea.select();
         document.execCommand("copy");

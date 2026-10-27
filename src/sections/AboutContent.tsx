@@ -28,7 +28,8 @@ function AboutContent() {
             <p>
               Olá! Sou o Leonardo Lyrio, desenvolvedor frontend apaixonado por criar interfaces que unem estética e funcionalidade,
               especializando-me em React e Tailwind CSS para construir aplicações
-              modernas, fluidas e com alta performance.
+              modernas, fluidas e com alta performance. Sou também um entusiasta de IA,
+              sempre explorando como as novas tecnologias podem potencializar a experiência do usuário.
             </p>
           </div>
         </div>

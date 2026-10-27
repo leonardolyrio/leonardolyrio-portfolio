@@ -62,13 +62,11 @@ function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boole
           {/* Textos do Card (Sem padding lateral extra para alinhar perfeitamente com a imagem) */}
           <div className="flex flex-col">
             <h3 className="text-xl md:text-[22px] mb-2 text-zinc-900 leading-snug tracking-tight">
-              Presença digital elegante e funcional para barbearia moderna
+              Site moderno e funcional para barbearia
             </h3>
 
             <p className="text-[15px] text-zinc-500 mb-6 leading-relaxed">
-              Desenvolvi uma interface intuitiva que prioriza a conversão,
-              integrando um fluxo de agendamento simplificado e um design
-              responsivo que reflete a qualidade dos serviços da marca.
+              Criei uma interface focada em conversão, com fluxo de agendamento simplificado e design responsivo.
             </p>
 
             <span className="text-[13px] text-zinc-400">

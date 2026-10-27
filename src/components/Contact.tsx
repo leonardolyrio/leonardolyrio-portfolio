@@ -124,8 +124,8 @@ function Contact() {
               to="/projects"
               className={`group absolute top-0 left-0 flex items-center gap-2 px-5 py-3 bg-white/90 backdrop-blur-sm border border-zinc-200 rounded-xl shadow-sm text-zinc-800 hover:bg-white transition-all duration-500 shrink-0 whitespace-nowrap ${
                 isHovered
-                  ? "translate-x-0 translate-y-[60px] opacity-100"
-                  : "translate-x-[145px] translate-y-0 opacity-100"
+                  ? "translate-x-0 translate-y-15 opacity-100"
+                  : "translate-x-36.25 translate-y-0 opacity-100"
               }`}
             >
               Veja os projetos

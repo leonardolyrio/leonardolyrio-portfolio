@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import project1Photo from "../assets/barbearia-casa-do-corte-banner.webp";
-import { ArrowRight, Scissors, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, Scissors, ExternalLink } from "lucide-react";
+import { GitHub } from "../components/icons/GitHub";
 
 function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boolean }) {
   return (
@@ -19,23 +20,23 @@ function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boole
       {/* Grid de Projetos - Limitado a max-w-5xl para alinhamento perfeito no desktop */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-5xl">
         {/* Card 1 */}
-        <div className="group relative w-full flex flex-col p-4 md:p-5 bg-white border border-zinc-200/70 rounded-4xl hover:scale-[1.02] transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md">
+        <div className="group relative w-full flex flex-col p-4 md:p-5 bg-white border border-zinc-200/70 rounded-4xl hover:scale-[1.02] transition-all duration-300 shadow-sm hover:shadow-md">
           {/* Links de Ação (Aparecem no Hover) */}
-          <div className="absolute bottom-6 right-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
+          <div className="absolute bottom-5 right-6 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
             <a
-              href="https://github.com/leonardolyrio/casa-do-corte"
+              href="https://github.com/leonardolyrio/barbearia-casa-do-corte"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-white border border-zinc-200 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-colors shadow-sm"
+              className="p-1 text-zinc-500 hover:text-zinc-900 transition-colors"
               title="Ver repositório no GitHub"
             >
-              <Github className="w-4 h-4" />
+              <GitHub className="w-4 h-4" />
             </a>
             <a
               href="https://barbearia-casa-do-corte.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-zinc-950 text-white rounded-full hover:bg-zinc-800 transition-colors shadow-sm"
+              className="p-1 text-zinc-500 hover:text-zinc-900 transition-colors"
               title="Visitar site"
             >
               <ExternalLink className="w-4 h-4" />

@@ -27,14 +27,13 @@ const PROJECTS: Project[] = [
     githubUrl: "https://github.com/leonardolyrio/barbearia-casa-do-corte",
     liveUrl: "https://barbearia-casa-do-corte.vercel.app/",
   },
-  // Futuros projetos entrarão aqui
 ];
 
 function ProjectsGrid({ showViewAllButton = false, limit }: { showViewAllButton?: boolean, limit?: number }) {
   const displayedProjects = limit ? PROJECTS.slice(0, limit) : PROJECTS;
 
   return (
-    <section className="flex flex-col items-center gap-12 md:gap-16 px-6 py-16 md:py-24 w-full">
+    <section className="flex flex-col items-center gap-12 md://gap-16 px-6 py-16 md:py-24 w-full">
       {/* Cabeçalho da Seção */}
       <div className="flex flex-col items-center gap-4 text-center">
         <h2 className="text-[clamp(2rem,4vw,3rem)] font-semibold tracking-tight text-zinc-900">
@@ -90,7 +89,7 @@ function ProjectsGrid({ showViewAllButton = false, limit }: { showViewAllButton?
 
             {/* Textos do Card */}
             <div className="flex flex-col">
-              <h3 className="text-xl md:text-[22px] mb-2 text-zinc-900 leading-snug tracking-tight">
+              <h3 className="text-xl md:text-[22px] mb-2 text-zinc-900 leading-snug tracking-//tight">
                 {project.title}
               </h3>
 

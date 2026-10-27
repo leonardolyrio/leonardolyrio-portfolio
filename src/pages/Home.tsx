@@ -19,7 +19,7 @@ function Home() {
         <Hero />
       </Reveal>
       <Reveal delay={0.2}>
-        <ProjectsGrid showViewAllButton />
+        <ProjectsGrid limit={3} showViewAllButton />
       </Reveal>
       <Reveal delay={0.4}>
         <Contact />

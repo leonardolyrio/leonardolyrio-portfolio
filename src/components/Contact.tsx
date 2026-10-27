@@ -64,8 +64,7 @@ function Contact() {
               Vamos nos conectar
             </h2>
             <p className="max-w-105 text-[clamp(1rem,1.5vw,1.125rem)] leading-relaxed text-zinc-700">
-              Estou sempre aberto a discutir novos projetos, ideias criativas ou
-              oportunidades de fazer parte da sua visão. Entre em contato!
+              Estou aberto a discutir novos projetos, ideias ou oportunidades. Entre em contato!
             </p>
           </div>
 

@@ -12,8 +12,7 @@ function ProjectsGrid({ showViewAllButton = false }: { showViewAllButton?: boole
           Meus Projetos
         </h2>
         <p className="max-w-150 text-[clamp(1rem,1.5vw,1.125rem)] leading-relaxed text-zinc-600">
-          De experimentos lúdicos a sistemas bem estruturados: um panorama dos
-          trabalhos que me orgulho de ter colocado no ar.
+          Uma seleção de projetos, desde experimentos simples até sistemas mais estruturados.
         </p>
       </div>
 

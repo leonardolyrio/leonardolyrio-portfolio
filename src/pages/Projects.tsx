@@ -13,7 +13,7 @@ function Projects() {
       <meta property="og:type" content="website" />
 
       <Reveal>
-        <PageHero title="Projetos" />
+        <PageHero />
       </Reveal>
       <Reveal delay={0.2}>
         <ProjectsGrid />

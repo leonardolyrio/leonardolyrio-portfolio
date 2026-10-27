@@ -13,7 +13,7 @@ function About() {
       <meta property="og:type" content="website" />
 
       <Reveal>
-        <PageHero title="Sobre Mim" />
+        <PageHero />
       </Reveal>
       <Reveal delay={0.2}>
         <AboutContent />

@@ -1,19 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import About from "./pages/About";
 import Lenis from "lenis";
 import ScrollToTop from "./components/ScrollToTop";
+
+const Home = lazy(() => import("./pages/Home"));
+const Projects = lazy(() => import("./pages/Projects"));
+const About = lazy(() => import("./pages/About"));
 
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Standard cubic easing
-      direction: 'vertical',
-      gestureOrientation: 'vertical',
       smoothWheel: true,
     });
 
@@ -37,11 +36,13 @@ function App() {
       <ScrollToTop />
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <Suspense fallback={<div className="h-screen w-full bg-white" />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

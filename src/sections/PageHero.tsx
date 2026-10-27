@@ -1,6 +1,6 @@
 import GradientASCII from "../components/GradientASCII";
 
-function PageHero({ title }: { title: string }) {
+function PageHero() {
   return (
     <section className="relative w-full h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">

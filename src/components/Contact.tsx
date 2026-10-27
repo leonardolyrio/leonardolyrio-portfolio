@@ -170,11 +170,8 @@ function Contact() {
 
             <div className="flex flex-col items-center gap-1.5 text-center">
               <p className="text-[13.5px] font-medium text-zinc-700">
-                2026 &copy; Built with React
+                2026 &copy; Leonardo Lyrio
               </p>
-              <span className="text-[12px] text-zinc-500">
-                By React Bits Pro
-              </span>
             </div>
           </div>
         </div>

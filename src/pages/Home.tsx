@@ -6,13 +6,15 @@ import { Reveal } from "../components/Reveal";
 function Home() {
   return (
     <main>
-      <title>Leonardo Lyrio | Desenvolvedor Frontend</title>
-      <meta name="description" content="Portfólio de Leonardo Lyrio, desenvolvedor frontend especializado em criar experiências digitais modernas e fluidas." />
-      <meta property="og:title" content="Leonardo Lyrio | Desenvolvedor Frontend" />
-      <meta property="og:description" content="Explore meus projetos e habilidades em desenvolvimento frontend." />
+      <title>Leonardo Lyrio | Frontend Developer</title>
+      <meta name="description" content="Portfólio de Leonardo Lyrio, desenvolvedor frontend e entusiasta de IA, com projetos de interfaces web." />
+      <meta property="og:title" content="Leonardo Lyrio | Frontend Developer" />
+      <meta property="og:description" content="Portfólio de Leonardo Lyrio, desenvolvedor frontend e entusiasta de IA, com projetos de interfaces web." />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="/og-image.webp" />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Leonardo Lyrio | Frontend Developer" />
+      <meta name="twitter:description" content="Portfólio de Leonardo Lyrio, desenvolvedor frontend e entusiasta de IA, com projetos de interfaces web." />
       <meta name="twitter:image" content="/og-image.webp" />
 
       <Reveal>
